@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Extract version from tag
         id: get_version
@@ -22,39 +20,20 @@ jobs:
           TAG=${GITHUB_REF#refs/tags/}
           VERSION=${TAG#v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          MAJOR=$(echo $VERSION | cut -d. -f1)
-          MINOR=$(echo $VERSION | cut -d. -f2)
-          PATCH=$(echo $VERSION | cut -d. -f3)
-          echo "major=$MAJOR" >> $GITHUB_OUTPUT
-          echo "minor=$MINOR" >> $GITHUB_OUTPUT
-          echo "patch=$PATCH" >> $GITHUB_OUTPUT
-
-      - name: Update version in manifest.json
-        run: |
-          jq '.header.version = [${{ steps.get_version.outputs.major }}, ${{ steps.get_version.outputs.minor }}, ${{ steps.get_version.outputs.patch }}] | .header.name = "BE_Tech_RP_v${{ steps.get_version.outputs.major }}.${{ steps.get_version.outputs.minor }}.${{ steps.get_version.outputs.patch }}"' manifest.json > manifest.json.tmp
-          mv manifest.json.tmp manifest.json
-
-      - name: Commit and push updated manifest.json
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add manifest.json
-          git commit -m "chore: update version to v${{ steps.get_version.outputs.version }} in manifest.json [skip ci]"
-          git push origin HEAD:${GITHUB_REF_NAME%%/*}
 
       - name: Create .mcpack file
         id: create_mcpack
         run: |
           MCPACK_NAME="Bedrock-Technical-Resource-Pack-v${{ steps.get_version.outputs.version }}.mcpack"
-          zip -r Bedrock-Technical-Resource-Pack-v${{ steps.get_version.outputs.version }}.zip ./* \
+          zip -r "$MCPACK_NAME" ./* \
             -x "*.git*" \
             -x ".github/*" \
             -x "*.md" \
-            -x "LICENSE"
-          mv Bedrock-Technical-Resource-Pack-v${{ steps.get_version.outputs.version }}.zip $MCPACK_NAME
+            -x "LICENSE" \
+            -x "documentation pictures/*"
           echo "mcpack_path=$MCPACK_NAME" >> $GITHUB_OUTPUT
 
-      - name: Create GitHub Release
+      - name: Upload .mcpack to release
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,17 +41,31 @@ jobs:
             const fs = require('fs');
             const mcpackPath = '${{ steps.create_mcpack.outputs.mcpack_path }}';
             const mcpackData = fs.readFileSync(mcpackPath);
-            const { data: releaseData } = await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: context.ref.replace('refs/tags/', ''),
-              name: 'Release v${{ steps.get_version.outputs.version }}',
-              generate_release_notes: true
-            });
+
+            // Get existing release or create a new one
+            let releaseId;
+            try {
+              const { data: existing } = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: context.ref.replace('refs/tags/', '')
+              });
+              releaseId = existing.id;
+            } catch {
+              const { data: created } = await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: context.ref.replace('refs/tags/', ''),
+                name: 'Release v${{ steps.get_version.outputs.version }}',
+                generate_release_notes: true
+              });
+              releaseId = created.id;
+            }
+
             await github.rest.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: releaseData.id,
+              release_id: releaseId,
               name: mcpackPath,
               data: mcpackData
             });

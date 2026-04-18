@@ -1,0 +1,19 @@
+{
+  "format_version" : "1.8.0",
+  "animations" : {
+    "animation.spawner_radius": {
+      "animation_length": 86399.9,
+      "loop": true,
+      "particle_effects": {
+        "0.0": [
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=0;    v.re_pos_y=-16; v.re_pos_z=-128; v.dir_x=0;  v.dir_y=0;  v.dir_z=1;  v.face=1;" },
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=128;  v.re_pos_y=-16; v.re_pos_z=0;    v.dir_x=-1; v.dir_y=0;  v.dir_z=0;  v.face=1;" },
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=0;    v.re_pos_y=-16; v.re_pos_z=128;  v.dir_x=0;  v.dir_y=0;  v.dir_z=-1; v.face=1;" },
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=-128; v.re_pos_y=-16; v.re_pos_z=0;    v.dir_x=1;  v.dir_y=0;  v.dir_z=0;  v.face=1;" },
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=0;    v.re_pos_y=64;  v.re_pos_z=0;    v.dir_x=0;  v.dir_y=1;  v.dir_z=0;  v.face=0;" },
+          { "effect": "spawner_radius_viz", "pre_effect_script": "v.re_pos_x=0;    v.re_pos_y=-96; v.re_pos_z=0;    v.dir_x=0;  v.dir_y=-1; v.dir_z=0;  v.face=0;" }
+        ]
+      }
+    }
+  }
+}

@@ -8,18 +8,15 @@
 				"default": "entity_alphatest",
 				"cape": "entity_alphatest",
 				"animated": "player_animated",
-				"spectator": "player_spectator",
-				"be_tech_rp": "be_tech_rp"
+				"spectator": "player_spectator"
 			},
 			"textures": {
 				"default": "textures/entity/steve",
-				"cape": "textures/entity/cape_invisible",
-				"spawner_radius": "textures/spawner_radius"
+				"cape": "textures/entity/cape_invisible"
 			},
 			"geometry": {
 				"default": "geometry.humanoid.custom",
-				"cape": "geometry.cape",
-				"spawner_radius": "geometry.spawner_radius"
+				"cape": "geometry.cape"
 			},
 			"scripts": {
 				"scale": "0.9375",
@@ -101,12 +98,15 @@
 				],
 				"animate": [
 					"root",
-					"chunk_control"
+					"chunk_control",
+					"spawner_radius_control"
 				],
 				"should_update_effects_offscreen": "1.0"
 			},
 			"animations": {
 				"root": "controller.animation.player.root",
+				"spawner_radius": "animation.spawner_radius",
+				"spawner_radius_control": "controller.animation.spawner_radius_control",
 				"base_controller": "controller.animation.player.base",
 				"hudplayer": "controller.animation.player.hudplayer",
 				"humanoid_base_pose": "animation.humanoid.base_pose",
@@ -178,7 +178,8 @@
 				"chunk_control": "controller.animation.chunk_control"
 			},
 			"particle_effects": {
-				"chunk": "addon:chunk"
+				"chunk": "addon:chunk",
+				"spawner_radius_viz": "addon:spawner_radius_viz"
 			},
 			"render_controllers": [
 				{
@@ -195,9 +196,6 @@
 				},
 				{
 					"controller.render.player.map": "variable.map_face_icon"
-				},
-				{
-					"controller.render.spawner_radius": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator && !query.is_in_ui && query.is_local_player && query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:nautilus_shell')"
 				}
 			],
 			"enable_attachables": true

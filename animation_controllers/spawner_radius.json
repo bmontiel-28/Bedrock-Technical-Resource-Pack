@@ -1,0 +1,21 @@
+{
+  "format_version" : "1.10.0",
+  "animation_controllers" : {
+    "controller.animation.spawner_radius_control" : {
+      "initial_state" : "default",
+      "states" : {
+        "default" : {
+          "transitions" : [
+            { "show" : "query.is_local_player && !query.is_in_ui && query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:nautilus_shell')" }
+          ]
+        },
+        "show" : {
+          "animations": [ "spawner_radius" ],
+          "transitions" : [
+            { "default" : "!query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:nautilus_shell')" }
+          ]
+        }
+      }
+    }
+  }
+}

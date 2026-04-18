@@ -9,17 +9,14 @@
 				"cape": "entity_alphatest",
 				"animated": "player_animated",
 				"spectator": "player_spectator",
-				"be_tech_rp": "be_tech_rp"
 			},
 			"textures": {
 				"default": "textures/entity/steve",
 				"cape": "textures/entity/cape_invisible",
-				"spawner_radius": "textures/spawner_radius"
 			},
 			"geometry": {
 				"default": "geometry.humanoid.custom",
 				"cape": "geometry.cape",
-				"spawner_radius": "geometry.spawner_radius"
 			},
 			"scripts": {
 				"scale": "0.9375",
@@ -195,9 +192,6 @@
 				},
 				{
 					"controller.render.player.map": "variable.map_face_icon"
-				},
-				{
-					"controller.render.spawner_radius": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator && !query.is_in_ui && query.is_local_player && query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:nautilus_shell')"
 				}
 			],
 			"enable_attachables": true

@@ -1,0 +1,32 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:armor_stand",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity_alphatest",
+        "be_tech_rp": "be_tech_rp"
+      },
+      "textures": {
+        "default": "textures/entity/armor_stand",
+        "spawner_radius": "textures/spawner_radius"
+      },
+      "geometry": {
+        "default": "geometry.armor_stand.larger_render",
+        "spawner_radius": "geometry.spawner_radius"
+      },
+      "scripts": {
+        "animate": [
+          "controller.pose",
+          "controller.wiggling"
+        ],
+        "should_update_bones_and_effects_offscreen": true
+      },
+      "render_controllers": [
+        "controller.render.armor_stand",
+        "controller.render.spawner_radius"
+      ]
+    }
+  }
+}

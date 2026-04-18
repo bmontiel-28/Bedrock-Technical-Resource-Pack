@@ -6,13 +6,13 @@
       "states" : {
         "default" : {
           "transitions" : [
-            { "show" : "query.is_local_player && !query.is_in_ui && v.chunk_toggle2" }
+            { "show" : "query.is_local_player && !query.is_in_ui && query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:firework_rocket')" }
           ]
         },
         "show" : {
           "animations": [ "chunk" ],
           "transitions" : [
-            { "default" : "!v.chunk_toggle2" }
+            { "default" : "!query.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:firework_rocket')" }
           ]
         }
       }

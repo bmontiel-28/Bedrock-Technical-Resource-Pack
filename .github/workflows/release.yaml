@@ -3,39 +3,25 @@ name: Release Resource Pack
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger on semantic version tags like v1.2.3
+      - 'v*.*.*'
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Needed for pushing changes and creating releases
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Need full history for changelog
+          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install Pillow numpy
-
-      - name: Fix transparent images
-        run: python clearPictureFixer.py
-        
       - name: Extract version from tag
         id: get_version
         run: |
           TAG=${GITHUB_REF#refs/tags/}
           VERSION=${TAG#v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          # Parse version components
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
           PATCH=$(echo $VERSION | cut -d. -f3)
@@ -64,7 +50,6 @@ jobs:
             -x "*.git*" \
             -x ".github/*" \
             -x "*.md" \
-            -x "clearPictureFixer.py" \
             -x "LICENSE"
           mv Bedrock-Technical-Resource-Pack-v${{ steps.get_version.outputs.version }}.zip $MCPACK_NAME
           echo "mcpack_path=$MCPACK_NAME" >> $GITHUB_OUTPUT
@@ -75,12 +60,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            
-            // Read the mcpack file
             const mcpackPath = '${{ steps.create_mcpack.outputs.mcpack_path }}';
             const mcpackData = fs.readFileSync(mcpackPath);
-            
-            // Create the release with auto-generated notes
             const { data: releaseData } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -88,8 +69,6 @@ jobs:
               name: 'Release v${{ steps.get_version.outputs.version }}',
               generate_release_notes: true
             });
-            
-            // Upload the mcpack asset
             await github.rest.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,

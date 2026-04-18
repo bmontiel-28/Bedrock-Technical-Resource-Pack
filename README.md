@@ -1,6 +1,6 @@
 # Bedrock Technical Resource Pack
 
-A lightweight resource pack for Minecraft Bedrock Edition that visualizes chunk borders and mob spawner areas directly from the player — no armor stands, no commands, no behavior packs required.
+A lightweight resource pack for Minecraft Bedrock Edition that visualizes chunk borders and mob spawner areas — no commands, no behavior packs required.
 
 ## Features
 
@@ -10,16 +10,16 @@ Hold a **Firework Rocket** in your offhand to display the borders of your curren
 ![Chunk borders visualization](documentation%20pictures/chunk_lines_a.png)
 
 ### Spawner Radius
-Hold a **Nautilus Shell** in your offhand to display the activation and spawn radius of mob spawners, centered on your position. Remove the item to hide it.
+Place an **Armor Stand** on top of a mob spawner to visualize its activation range and spawn area.
 
+![Spawner radius overview](documentation%20pictures/spawner.png)
 ![Spawner radius visualization](documentation%20pictures/spawner_a.png)
-![Spawner overview](documentation%20pictures/spawner.png)
 
 ## Requirements
 
 - Minecraft Bedrock Edition 1.21.1 or newer
 - Resource pack only — no behavior pack needed
-- No armor stands, no commands
+- No commands required
 
 ## Installation
 

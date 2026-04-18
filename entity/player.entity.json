@@ -98,15 +98,12 @@
 				],
 				"animate": [
 					"root",
-					"chunk_control",
-					"spawner_radius_control"
+					"chunk_control"
 				],
 				"should_update_effects_offscreen": "1.0"
 			},
 			"animations": {
 				"root": "controller.animation.player.root",
-				"spawner_radius": "animation.spawner_radius",
-				"spawner_radius_control": "controller.animation.spawner_radius_control",
 				"base_controller": "controller.animation.player.base",
 				"hudplayer": "controller.animation.player.hudplayer",
 				"humanoid_base_pose": "animation.humanoid.base_pose",
@@ -178,8 +175,7 @@
 				"chunk_control": "controller.animation.chunk_control"
 			},
 			"particle_effects": {
-				"chunk": "addon:chunk",
-				"spawner_radius_viz": "addon:spawner_radius_viz"
+				"chunk": "addon:chunk"
 			},
 			"render_controllers": [
 				{

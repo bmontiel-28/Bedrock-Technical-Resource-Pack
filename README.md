@@ -1,75 +1,54 @@
 # Bedrock Technical Resource Pack
 
-Welcome to the Bedrock-Technical-Resource-Pack! This is a project that aims to provide tools to design and build farms in a survival/achievements enabled world.
-This means we are not using behavior packs, commands, or other items that the normal player on a typical server would not have access to. To do that we have to
-use an armor stand as an anchor for the tools as it is the only entity that can be placed on a single block and be switched manipulated. If a person can find a
-way to make the tridents or other AI-free entities host several geometries we are looking for contributions.
+A lightweight resource pack for Minecraft Bedrock Edition that visualizes chunk borders and mob spawner areas directly from the player — no armor stands, no commands, no behavior packs required.
 
-## Overview
+## Features
 
-This resource pack enhances the visual feedback for many technical aspects of Minecraft, including:
+### Chunk Borders
+Hold a **Firework Rocket** in your offhand to display the borders of your current chunk. Remove the item to hide them.
 
-- Spawning spot indicators
-- Entity behavior indicators
-- Spawn spheres
-- Slime chunks
-- Beacon areas
+![Chunk borders visualization](documentation%20pictures/chunk_lines_a.png)
 
-By making these normally invisible or hard-to-see game mechanics visible, this pack is invaluable for technical players, redstone engineers, map makers, and anyone interested in understanding how Minecraft works under the hood.
+### Spawner Radius
+Hold a **Nautilus Shell** in your offhand to display the activation and spawn radius of mob spawners, centered on your position. Remove the item to hide it.
+
+![Spawner radius visualization](documentation%20pictures/spawner_a.png)
+![Spawner overview](documentation%20pictures/spawner.png)
+
+## Requirements
+
+- Minecraft Bedrock Edition 1.21.1 or newer
+- Resource pack only — no behavior pack needed
+- No armor stands, no commands
 
 ## Installation
 
-### Method 1: Using .mcpack File (Recommended)
+### Option 1 — .mcpack file (recommended)
 
-1. Download the latest `.mcpack` file from the [Releases page](https://github.com/RavinMaddHatter/Bedrock-Technical-Resource-Pack/releases)
-2. Open the `.mcpack` file with Minecraft Bedrock Edition
-3. The game will automatically import the resource pack
-4. Activate the pack in your game settings under "Resource Packs"
+1. Download the latest `.mcpack` from the [Releases page](../../releases)
+2. Open it with Minecraft Bedrock Edition
+3. Activate the pack in your world or global settings under **Resource Packs**
 
-### Method 2: Manual Installation
+### Option 2 — Manual
 
-1. Download the repository as a ZIP file
-2. Extract the contents into the following location depending on your platform:
-    - **Windows 10/11**: `%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\resource_packs\`
-    - **iOS/Android**: `games/com.mojang/resource_packs/`
-    - **Nintendo Switch**: Import via USB connection or Realms 
-	- **PS5 / Xbox**: No known install method documented 
-3. Launch Minecraft and activate the pack in the game settings
+1. Download the repository as a ZIP and extract it
+2. Copy the folder to your platform's resource packs directory:
+   - **Windows 10/11**: `%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\resource_packs\`
+   - **iOS / Android**: `games/com.mojang/resource_packs/`
+   - **Nintendo Switch**: Import via Realms or USB
+3. Activate the pack in Minecraft settings
 
 ## How to Contribute
 
-Contributions to improve the resource pack are welcome! Here's how you can contribute:
-
-1. **Fork** the repository
-2. **Clone** your fork locally
-3. **Create a branch** for your feature or fix
-4. Make your changes
-5. Test your changes in Minecraft
-6. **Submit a pull request** with a clear description of your improvements
-
-### Development Guidelines
-
-- Follow Minecraft's texture format and structure
-- Use transparent images correctly (the repository has a script to fix common issues)
-- Test all changes in-game before submitting
-- Document any new features you add
-
-## Documentation
-
-Extensive documentation for this pack is available in the [GitHub Wiki](https://github.com/RavinMaddHatter/Bedrock-Technical-Resource-Pack/wiki).
-
-The wiki includes:
-
-- Detailed explanations of each visual indicator
-- How to use special items with armor stands
-- Technical block behavior guides
-- Troubleshooting tips
+1. Fork the repository
+2. Create a branch for your feature or fix
+3. Test your changes in-game
+4. Submit a pull request with a clear description
 
 ## License
 
-Please see the LICENSE file for details on the usage and redistribution of this resource pack.
+See the [LICENSE](LICENSE) file for details.
 
 ---
 
-*This resource pack is not affiliated with Mojang or Microsoft.*
-*All rights to Minecraft and its assets are owned by Mojang Studios.*
+*Not affiliated with Mojang or Microsoft. Minecraft and its assets are owned by Mojang Studios.*

@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       tag:
@@ -66,20 +64,19 @@ jobs:
               });
               releaseId = existing.id;
 
-              // Borrar asset anterior con el mismo nombre si existe
+              // Borrar todos los assets subidos (zip/tar de GitHub no aparecen aquí)
               const { data: assets } = await github.rest.repos.listReleaseAssets({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                release_id: releaseId
+                release_id: releaseId,
+                per_page: 100
               });
               for (const asset of assets) {
-                if (asset.name === mcpackPath) {
-                  await github.rest.repos.deleteReleaseAsset({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    asset_id: asset.id
-                  });
-                }
+                await github.rest.repos.deleteReleaseAsset({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  asset_id: asset.id
+                });
               }
             } catch (e) {
               const { data: created } = await github.rest.repos.createRelease({
